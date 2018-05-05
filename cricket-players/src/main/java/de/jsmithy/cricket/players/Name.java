@@ -14,12 +14,19 @@ public class Name implements Serializable {
 	private static final long serialVersionUID = 1140989109643131931L;
 
 	private String value;
+	
+	private Name() {
+	}
 
 	private Name(String name) {
 		value = name;
 	}
 
 	public static Name newInstance(String name) {
+		if ((name == null) || (name.trim().isEmpty())) {
+			return NameNullObject.instance();
+		}
+		
 		return new Name(name);
 	}
 
@@ -55,5 +62,25 @@ public class Name implements Serializable {
 	@Override
 	public String toString() {
 		return value;
+	}
+	
+	static final class NameNullObject extends Name {
+		private static final long serialVersionUID = 6747770967547423198L;
+		
+		private static final NameNullObject SINGLETON = new NameNullObject();
+		
+		private static NameNullObject instance() {
+			return SINGLETON;
+		}
+		
+		@Override
+		public boolean isEmpty() {
+			return true;
+		}
+		
+		@Override
+		public String toString() {
+			return "";
+		}
 	}
 }
