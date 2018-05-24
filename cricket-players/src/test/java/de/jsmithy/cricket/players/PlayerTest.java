@@ -2,7 +2,10 @@ package de.jsmithy.cricket.players;
 
 import static org.junit.Assert.*;
 
+import java.util.Optional;
+
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -37,5 +40,20 @@ public class PlayerTest {
 		Name actual = sut.getName();
 		
 		assertEquals("<name> has not been set!", expected, actual);
+	}
+	
+	@Test
+	public void testGetNickName_default_is_empty() {
+		Player sut = Player.newInstance(Name.newInstance("Some name"));
+		Optional<Name> expected = Optional.empty();
+		
+		Optional<Name> actual = sut.getNickName();
+		
+		assertEquals("Default <nickName> is not correct!", expected, actual);
+	}
+	
+	@Ignore("to beimplemented")
+	@Test
+	public void testSetNickName() {
 	}
 }

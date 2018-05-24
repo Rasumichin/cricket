@@ -1,6 +1,7 @@
 package de.jsmithy.cricket.players;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents a Player within a Cricket darts game.
@@ -26,5 +27,9 @@ public class Player {
 
 	public Name getName() {
 		return name;
+	}
+
+	public Optional<Name> getNickName() {
+		return Optional.empty();
 	}
 }
