@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.Optional;
 
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -52,8 +51,38 @@ public class PlayerTest {
 		assertEquals("Default <nickName> is not correct!", expected, actual);
 	}
 	
-	@Ignore("to beimplemented")
 	@Test
 	public void testSetNickName() {
+		Player sut = Player.newInstance(Name.newInstance("Some name"));
+		Name expected = Name.newInstance("Nick");
+		
+		sut.setNickName(expected);
+		
+		Optional<Name> nickName = sut.getNickName();
+		Name actual = nickName.isPresent() ? nickName.get() : null;
+		assertEquals("Setting <nickName> was not correct!", expected, actual);
+	}
+	
+	@Test
+	public void testToString() {
+		String expected = "Wayne Mardle";
+		Player sut = Player.newInstance(Name.newInstance(expected));
+		
+		String actual = sut.toString();
+		
+		assertEquals("String representation is not correct!", expected, actual);
+	}
+
+	
+	@Test
+	public void testToString_with_nickName_present() {
+		String name = "Wayne Mardle";
+		Player sut = Player.newInstance(Name.newInstance(name));
+		sut.setNickName(Name.newInstance("Hawaii 5.0.1"));
+		String expected = "Wayne Mardle - Hawaii 5.0.1";
+		
+		String actual = sut.toString();
+		
+		assertEquals("String representation is not correct!", expected, actual);
 	}
 }

@@ -11,6 +11,7 @@ import java.util.Optional;
  */
 public class Player {
 	private Name name;
+	private Name nickName;
 
 	private Player() {
 	}
@@ -30,6 +31,17 @@ public class Player {
 	}
 
 	public Optional<Name> getNickName() {
-		return Optional.empty();
+		return Optional.ofNullable(nickName);
+	}
+
+	public void setNickName(Name aNickName) {
+		nickName = aNickName;
+	}
+
+	@Override
+	public String toString() {
+		String result = getNickName().isPresent() ? String.format(getName().toString() + " - %s", getNickName().get()) : getName().toString();
+		
+		return result;
 	}
 }
