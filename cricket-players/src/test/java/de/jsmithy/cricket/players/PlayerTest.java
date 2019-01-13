@@ -94,6 +94,43 @@ public class PlayerTest {
 		
 		boolean condition = sut.equals(otherPlayer);
 		
-		assertTrue("Players are not equal!", condition);
+		assertTrue("Players must be equal!", condition);
+	}
+
+	@Test
+	public void testEquals_both_has_same_name_and_nickname() {
+		String name = "Phil Taylor";
+		Name nickName = Name.newInstance("The Power");
+		Player sut = Player.newInstance(Name.newInstance(name));
+		sut.setNickName(nickName);
+		Player otherPlayer = Player.newInstance(Name.newInstance(name));
+		otherPlayer.setNickName(nickName);
+		
+		boolean condition = sut.equals(otherPlayer);
+		
+		assertTrue("Players must be equal!", condition);
+	}
+
+	@Test
+	public void testEquals_both_has_different_names() {
+		Player sut = Player.newInstance(Name.newInstance("Phil Taylor"));
+		Player otherPlayer = Player.newInstance(Name.newInstance("Stephen Hendry"));
+		
+		boolean condition = sut.equals(otherPlayer);
+		
+		assertFalse("Players must not be equal!", condition);
+	}
+
+	@Test
+	public void testEquals_both_has_same_name_but_different_nicknames() {
+		Name name = Name.newInstance("Phil Taylor");
+		Player sut = Player.newInstance(name);
+		sut.setNickName(Name.newInstance("The Power"));
+		Player otherPlayer = Player.newInstance(name);
+		otherPlayer.setNickName(Name.newInstance("The Machine"));
+		
+		boolean condition = sut.equals(otherPlayer);
+		
+		assertFalse("Players must not be equal!", condition);
 	}
 }
