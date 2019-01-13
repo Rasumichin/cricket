@@ -85,4 +85,15 @@ public class PlayerTest {
 		
 		assertEquals("String representation is not correct!", expected, actual);
 	}
+	
+	@Test
+	public void testEquals_both_has_same_name() {
+		String name = "Phil Taylor";
+		Player sut = Player.newInstance(Name.newInstance(name));
+		Player otherPlayer = Player.newInstance(Name.newInstance(name));
+		
+		boolean condition = sut.equals(otherPlayer);
+		
+		assertTrue("Players are not equal!", condition);
+	}
 }
